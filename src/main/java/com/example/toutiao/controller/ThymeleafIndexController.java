@@ -1,7 +1,6 @@
 package com.example.toutiao.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +31,7 @@ public class ThymeleafIndexController {
         user.setFriend(new User("李小龙", 30));
 
 
-        return new ModelAndView("index", "user", user);
+        return new ModelAndView("thymeleafindex", "user", user);
     }
 
     @RequestMapping(value = "/profile/{groupId}/{userId}")
