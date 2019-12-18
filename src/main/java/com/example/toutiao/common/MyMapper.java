@@ -1,4 +1,4 @@
-package com.example.toutiao.mapper;
+package com.example.toutiao.common;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;
