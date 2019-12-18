@@ -16,7 +16,7 @@
 package com.example.toutiao.service;
 
 import com.example.toutiao.domain.BaseEntity;
-import com.example.toutiao.mapper.MyMapper;
+import com.example.toutiao.common.MyMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
