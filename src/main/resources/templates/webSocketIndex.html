@@ -40,9 +40,9 @@
         socket.onmessage = function(msg) {
             console.log(msg.data);
         };
-        socket.
-            //连接关闭事件
-            socket.onclose = function() {
+
+        //连接关闭事件
+        socket.onclose = function() {
             console.log("Socket已关闭");
         };
         //发生了错误事件
