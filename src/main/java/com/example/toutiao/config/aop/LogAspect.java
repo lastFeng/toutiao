@@ -1,4 +1,4 @@
-package com.example.toutiao.config.apo;
+package com.example.toutiao.config.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
