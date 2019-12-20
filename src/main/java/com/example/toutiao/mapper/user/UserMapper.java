@@ -1,7 +1,7 @@
 package com.example.toutiao.mapper.user;
 
-import com.example.toutiao.domain.user.User;
 import com.example.toutiao.common.MyMapper;
+import com.example.toutiao.domain.user.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

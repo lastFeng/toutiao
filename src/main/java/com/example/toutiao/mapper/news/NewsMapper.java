@@ -1,7 +1,7 @@
 package com.example.toutiao.mapper.news;
 
-import com.example.toutiao.domain.news.News;
 import com.example.toutiao.common.MyMapper;
+import com.example.toutiao.domain.news.News;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
