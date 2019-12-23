@@ -18,7 +18,14 @@ package com.example.toutiao.service.user;
 import com.example.toutiao.domain.user.User;
 import com.example.toutiao.mapper.user.UserMapper;
 import com.example.toutiao.service.BaseService;
+import com.example.toutiao.utils.security.Md5Util;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+
+import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * <p> Title: </p>
@@ -31,4 +38,39 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService extends BaseService<UserMapper, User> {
+
+    /**
+     * 用户注册
+     * @param username
+     * @param password
+     */
+    public Map<String, Object> register(String username, String password) throws NoSuchAlgorithmException {
+        Map<String, Object> result = new HashMap<>();
+        if (StringUtils.isBlank(username)) {
+            result.put("msgname", "用户名不能为空");
+            return result;
+        }
+
+        if (StringUtils.isBlank(password)) {
+            result.put("msgpwd", "密码不能为空");
+            return result;
+        }
+
+        User user = this.mapper.selectUserByName(username);
+
+        if (user != null) {
+            result.put("msgname", "用户名已被注册");
+            return result;
+        }
+
+        user = new User();
+        user.setName(username);
+        user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+        String salt = UUID.randomUUID().toString().substring(0, 5);
+        user.setSalt(salt);
+        user.setPassword(Md5Util.get32BitMd5(password + salt));
+        this.mapper.insert(user);
+
+        return result;
+    }
 }

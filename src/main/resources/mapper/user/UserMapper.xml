@@ -12,4 +12,12 @@
     <sql id="BaseTableName">
         user.id, user.name, user.password, user.salt, user.head_url
     </sql>
+    <select id="selectUserByName" resultType="com.example.toutiao.domain.user.User">
+        SELECT
+            <include refid="BaseName" />
+        FROM user
+        WHERE name = #{name}
+    </select>
+
+
 </mapper>

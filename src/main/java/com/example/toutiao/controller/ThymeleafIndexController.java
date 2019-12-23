@@ -20,7 +20,7 @@ import java.util.Enumeration;
  * @description:
  * @data created in 2019/12/11 21:33
  */
-@Controller
+//@Controller
 public class ThymeleafIndexController {
 
     /**

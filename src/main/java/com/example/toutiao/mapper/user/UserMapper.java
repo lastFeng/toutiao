@@ -1,6 +1,6 @@
 package com.example.toutiao.mapper.user;
 
-import com.example.toutiao.common.MyMapper;
+import com.example.toutiao.common.mapper.MyMapper;
 import com.example.toutiao.domain.user.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,4 +12,11 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMapper extends MyMapper<User> {
+
+    /**
+     *
+     * @param name
+     * @return
+     */
+    User selectUserByName(String name);
 }
