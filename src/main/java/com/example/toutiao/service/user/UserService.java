@@ -73,4 +73,38 @@ public class UserService extends BaseService<UserMapper, User> {
 
         return result;
     }
+
+    /**
+     * 用户登录
+     * @return
+     */
+    public Map<String, Object> login(String username, String password) throws NoSuchAlgorithmException {
+        Map<String, Object> map = new HashMap<>();
+
+        if (StringUtils.isBlank(username)) {
+            map.put("msgname", "用户名不能为空");
+            return map;
+        }
+
+        if (StringUtils.isBlank(password)) {
+            map.put("msgpwd", "密码不能为空");
+            return map;
+        }
+
+        User user = this.mapper.selectUserByName(username);
+
+        if (user == null) {
+            map.put("msgname", "用户名不存在");
+            return map;
+        }
+
+        if (!Md5Util.get32BitMd5(password + user.getSalt()).equals(user.getPassword())) {
+            map.put("msgpwd", "密码不正确");
+            return map;
+        }
+
+        // 这里肯定是获取用户登录的信息等内容
+
+        return map;
+    }
 }
