@@ -1,5 +1,6 @@
 package com.example.toutiao.config.web.webconfig;
 
+import com.example.toutiao.config.interceptor.LoginRequireInterceptor;
 import com.example.toutiao.config.interceptor.PassportInterceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -16,5 +17,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new PassportInterceptor());
+        registry.addInterceptor(new LoginRequireInterceptor()).addPathPatterns("/setting/*");
     }
 }
