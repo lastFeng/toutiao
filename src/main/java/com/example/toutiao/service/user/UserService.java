@@ -107,4 +107,12 @@ public class UserService extends BaseService<UserMapper, User> {
 
         return map;
     }
+
+    /**
+     * 用户登出
+     * @param ticket
+     */
+    public void logout(String ticket) {
+        // 将相应用户登录的信息设置即可
+    }
 }
