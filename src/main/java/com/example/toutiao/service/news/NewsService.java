@@ -18,7 +18,15 @@ package com.example.toutiao.service.news;
 import com.example.toutiao.domain.news.News;
 import com.example.toutiao.mapper.news.NewsMapper;
 import com.example.toutiao.service.BaseService;
+import com.example.toutiao.utils.image.ImageUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.UUID;
 
 /**
  * <p> Title: </p>
@@ -31,4 +39,24 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class NewsService extends BaseService<NewsMapper, News> {
+
+    /**
+     * 将图片保存在服务器中
+     * @param file
+     * @return
+     * @throws IOException
+     */
+    public String saveImage(MultipartFile file) throws IOException {
+        boolean isImage = ImageUtil.isFileAllowed(file);
+
+        if (!isImage) {
+            return null;
+        }
+
+        String fileName = UUID.randomUUID().toString().replaceAll("-", "") + "." + ImageUtil.getFileExt(file);
+
+        Files.copy(file.getInputStream(), new File(ImageUtil.IMAGE_DIR + fileName).toPath(),
+                StandardCopyOption.REPLACE_EXISTING);
+        return ImageUtil.WEB_DOMAIN + "image?name=" + fileName;
+    }
 }
